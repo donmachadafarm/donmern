@@ -1,0 +1,1 @@
+console.log('logged from the server')
