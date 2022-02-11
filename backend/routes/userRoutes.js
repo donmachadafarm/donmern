@@ -1,11 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const { getGoals, addGoals, updateGoal, deleteGoal } = require('../controllers/goalController')
+const { registerUser, loginUser, getMe } = require('../controllers/userController')
 const { protect } = require('../middleware/authMiddleware')
 
+router.route('/').post(registerUser)
+router.route('/login').post(loginUser)
 
-router.route('/').get(protect, getGoals).post(protect, addGoals)
-router.route('/:id').put(protect, updateGoal).delete(protect, deleteGoal)
+router.get('/me',protect,getMe)
+
+// router.route('/').get(getGoals).post(addGoals)
+// router.route('/:id').put(updateGoal).delete(deleteGoal)
 
 // longer version of each route
 // router.get('/', getGoals)
